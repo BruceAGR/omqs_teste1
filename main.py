@@ -16,6 +16,9 @@ res = requests.post(url, data=payload)
 print(res.status_code)
 print(res.text)
 
+print(TOKEN)
+print(chat_id)
+
 if res.status_code == 200:
     print("✅ Mensagem enviada com sucesso2!")
 else:
