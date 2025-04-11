@@ -2,7 +2,8 @@ name: Notificar Telegram
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # roda a cada 10 minutos
+    - cron: '0 * * * *'  # roda de hora em hora, no minuto 0
+    
   workflow_dispatch:      # também pode rodar manualmente
 
 jobs:
