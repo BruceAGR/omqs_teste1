@@ -1,7 +1,7 @@
 import requests
 
-TOKEN = '7488164113:AAEXiG5Xl-UpYChI4ASDBmMaZS3rEIwpoUc'  # Seu token
-chat_id = '331126754'
+TOKEN = os.getenv('TELEGRAM_TOKEN')      # Pega do GitHub Secrets
+chat_id = os.getenv('TELEGRAM_CHAT_ID')      # Pega do GitHub Secrets
 mensagem = '🚀 Notificação enviada do Google Colab!2'
 
 url = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
