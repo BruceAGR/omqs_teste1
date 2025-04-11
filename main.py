@@ -1,4 +1,5 @@
 import requests
+import os
 
 TOKEN = os.getenv('TELEGRAM_TOKEN')      # Pega do GitHub Secrets
 chat_id = os.getenv('TELEGRAM_CHAT_ID')      # Pega do GitHub Secrets
