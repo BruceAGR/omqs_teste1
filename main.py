@@ -3,8 +3,8 @@ import os
 from datetime import datetime  # 👈 importa o datetime
 
 # Pega as variáveis de ambiente (se quiser usar Secrets do GitHub futuramente)
-TOKEN = os.getenv('BOT_TOKEN')
-chat_id = os.getenv('CHAT_ID')
+TOKEN = os.getenv('TELEGRAM_TOKEN')
+chat_id = os.getenv('TELEGRAM_CHAT_ID')
 
 # Pega o horário atual formatado
 agora = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
