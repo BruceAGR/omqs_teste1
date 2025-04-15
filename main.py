@@ -7,8 +7,8 @@ TOKEN = os.getenv('BOT_TOKEN')
 chat_id = os.getenv('CHAT_ID')
 
 # Substitui com valores fixos (usado agora pro teste local)
-TOKEN = '7488164113:AAEXiG5Xl-UpYChI4ASDBmMaZS3rEIwpoUc'
-chat_id = '331126754'
+#TOKEN = '7488164113:AAEXiG5Xl-UpYChI4ASDBmMaZS3rEIwpoUc'
+#chat_id = '331126754'
 
 # Pega o horário atual formatado
 agora = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
@@ -23,6 +23,9 @@ payload = {
 }
 
 res = requests.post(url, data=payload)
+
+print("TOKEN - " & TOKEN)
+rint("chat_id - " & chat_id)
 
 print(res.status_code)
 print(res.text)
