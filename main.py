@@ -24,8 +24,8 @@ payload = {
 
 res = requests.post(url, data=payload)
 
-print("TOKEN - " & TOKEN)
-rint("chat_id - " & chat_id)
+print("TOKEN - " + str(TOKEN))
+print("chat_id - " + str(chat_id))
 
 print(res.status_code)
 print(res.text)
