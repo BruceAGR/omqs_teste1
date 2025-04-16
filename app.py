@@ -1,32 +1,29 @@
-from flask import Flask
 import requests
-from datetime import datetime, timedelta
 import os
+from datetime import datetime  # 👈 importa o datetime
 
-app = Flask(__name__)
+# Pega as variáveis de ambiente (se quiser usar Secrets do GitHub futuramente)
+TOKEN = os.getenv('TELEGRAM_TOKEN')
+chat_id = os.getenv('TELEGRAM_CHAT_ID')
 
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+# Pega o horário atual formatado
+agora = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
 
-@app.route("/")
-def btc_notifier():
-    agora = datetime.utcnow() - timedelta(hours=3)  # Corrige fuso para BRT
-    agora_str = agora.strftime('%d/%m/%Y %H:%M:%S')
+# Mensagem com horário
+mensagem = f'🚀 Notificação enviada do GitHub Actions às {agora}!'
 
-    # Consulta o preço do BTC (via CoinGecko)
-    r = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=brl")
-    btc_price = r.json().get("bitcoin", {}).get("brl", "N/A")
+url = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
+payload = {
+    'chat_id': chat_id,
+    'text': mensagem
+}
 
-    # Mensagem
-    msg = f"💰 BTC está em R$ {btc_price:,} — {agora_str}"
+res = requests.post(url, data=payload)
 
-    # Enviar para Telegram
-    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    payload = {"chat_id": TELEGRAM_CHAT_ID, "text": msg}
-    res = requests.post(url, data=payload)
+print(res.status_code)
+print(res.text)
 
-    return f"Enviado: {msg} | Status: {res.status_code}"
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Usa a porta da Render ou 5000 localmente
-    app.run(host="0.0.0.0", port=port)
+if res.status_code == 200:
+    print(mensagem)
+else:
+    print("❌ Erro ao enviar:", res.text)
