@@ -10,7 +10,7 @@ chat_id = os.getenv('TELEGRAM_CHAT_ID')
 agora = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
 
 # Mensagem com horário
-mensagem = f'🚀 Notificação enviada do GitHub Actions às {agora}!'
+mensagem = f'🚀 Notificação enviada do GitHub MAIN.app às {agora}!'
 
 url = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
 payload = {
