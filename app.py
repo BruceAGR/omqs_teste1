@@ -26,3 +26,7 @@ def btc_notifier():
     res = requests.post(url, data=payload)
 
     return f"Enviado: {msg} | Status: {res.status_code}"
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Usa a porta da Render ou 5000 localmente
+    app.run(host="0.0.0.0", port=port)
